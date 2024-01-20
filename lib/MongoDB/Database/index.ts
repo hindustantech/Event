@@ -5,10 +5,10 @@ let cached = (global as any).mongoose || { conn: null, promise: null };
 export const connectToDb = async () => {
     if (cached.conn) return cached.conn;
     if (!MONGODB_URI) throw new Error('MONGODB_URI is MISSING');
-    cached.Promise = cached.Promise || mongoose.connect(MONGODB_URI, {
+    cached.promise = cached.promise || mongoose.connect(MONGODB_URI, {
         dbName: 'evently',
         bufferCommands: false,
     })
-    cached.conn = await cached.Promise
+    cached.conn = await cached.promise
     return cached.conn;
 }
