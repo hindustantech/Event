@@ -1,10 +1,11 @@
 'use server'
 import { revalidatePath } from 'next/cache'
 import { CreateUserParams, UpdateUserParams } from "@/types"
-import { connectToDb } from "../MongoDB/Database"
-import User from "../MongoDB/Database/Models/user.model"
-import Order from '../MongoDB/Database/Models/user.model'
-import Event from '../MongoDB/Database/Models/user.model'
+import { connectToDb } from '../database'
+import User from '../database/models/user.model'
+import Order from '../database/models/order.model'
+import Event from '../database/models/event.model'
+
 import { handleError } from "../utils"
 
 export const createUser = async (user: CreateUserParams) => {
