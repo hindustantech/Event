@@ -1,14 +1,14 @@
-import { Schema, model, models } from "mongoose"
-
+import { Schema, model, models } from "mongoose";
 
 const UserSchema = new Schema({
-    clerkId: { type: String, require: true, unique: true },
-    email: { type: String, require: true, unique: true },
-    UserNmae: { type: String, require: true, unique: true },
-    firstName: { type: String, require: true },
-    lastName: { type: String, require: true },
-    photo: { type: String, require: true },
-})
+  clerkId: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
+  userName: { type: String, required: true, unique: true }, // Corrected property name
+  firstName: { type: String, required: true },
+  lastName: { type: String, required: true },
+  photo: { type: String, required: true },
+});
+
 const User = models.User || model('User', UserSchema);
 
 export default User;
