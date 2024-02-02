@@ -1,6 +1,5 @@
 'use client';
 import { headerLinks } from '@/constants'
-import link from 'next/link'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
