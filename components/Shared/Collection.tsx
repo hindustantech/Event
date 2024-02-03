@@ -1,6 +1,7 @@
 import { IEvent } from '@/lib/database/models/event.model'
 import React from 'react'
 import Card from './Card'
+import Paginations from './paginations'
 
 
 type CollectionProps = {
@@ -35,14 +36,16 @@ const Collection = ({ data,
 
               return (
                 <li key={event._id} className="flex justify-center">
-                  <Card event={event} hasOrderLink={hasOrderLink} hidePrice={hidePrice}/>
-                  
+                  <Card event={event} hasOrderLink={hasOrderLink} hidePrice={hidePrice} />
+
                 </li>
               )
             })}
           </ul>
 
-
+          {totalPages > 1 && (
+              <Paginations urlParamName={urlParamName} page={page} totalPages={totalPages}/>
+          )}
         </div>
       ) : (
         <div className="flex-center wrapper min-h-[200px] w-full flex-col gap-3 rounded-[14px] bg-grey-50 py-28 text-center">
