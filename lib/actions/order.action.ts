@@ -128,10 +128,10 @@ export async function getOrdersByEvent({ searchString, eventId }: GetOrdersByEve
         .populate({
           path: 'event',
           model: Event,
-          populate: {
-            path: 'organizer',
-            model: User,
-            select: '_id firstName lastName',
+          populate:{ 
+          path: 'organizer',
+           model: User, 
+           select: '_id firstName lastName',
           },
         })
   
@@ -139,7 +139,8 @@ export async function getOrdersByEvent({ searchString, eventId }: GetOrdersByEve
   
       return { data: JSON.parse(JSON.stringify(orders)), totalPages: Math.ceil(ordersCount / limit) }
     } catch (error) {
-      handleError(error)
+      handleError(error);
+      throw error;
     }
   }
   

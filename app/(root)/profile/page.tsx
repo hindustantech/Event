@@ -2,23 +2,28 @@ import Collection from '@/components/Shared/Collection'
 import { Button } from '@/components/ui/button'
 import { getEventsByUser } from '@/lib/actions/event.actions'
 import { getOrdersByUser } from '@/lib/actions/order.action'
-import Order, { IOrder } from '@/lib/database/models/order.model'
+import { IOrder } from '@/lib/database/models/order.model'
 import { SearchParamProps } from '@/types'
 import { auth } from '@clerk/nextjs'
 import Link from 'next/link'
 import React from 'react'
 
-const ProfilePage = async ({searchParams}:SearchParamProps) => {
+const ProfilePage = async ({ searchParams }: SearchParamProps) => {
     const { sessionClaims } = auth();
     const userId = sessionClaims?.userId as string;
 
-    const orderPage=Number(searchParams?.orderPage)||1;
-    const eventsPage=Number(searchParams?.eventsPage)||1;
+    const orderPage = Number(searchParams?.orderPage) || 1;
+    const eventsPage = Number(searchParams?.eventsPage) || 1;
+
+    const orders = await getOrdersByUser({ userId, page: 1 })
+    
+    const orderedEvents = orders?.data.map((order: IOrder) => order.event) || []; 
+    const orderedEventsFiltered = orderedEvents.filter((event: null) => event !== null);
 
     const organizedEvent = await getEventsByUser({ userId, page: 1 })
-    const orders= await getOrdersByUser({userId,page:1})
-    const orderedEvents = orders?.data.map((order: IOrder) => order.event) ||[];
 
+    console.log({orderedEvents})
+    // console.log({organizedEvent})
     return (
         <>
             {/* my Tickets */}
@@ -33,7 +38,7 @@ const ProfilePage = async ({searchParams}:SearchParamProps) => {
 
             <section className='wrapper my-8'>
                 <Collection
-                    data={orderedEvents}
+                    data={orderedEventsFiltered}
                     emptyTitle="No Event Ticket Purchased "
                     emptyStateSubtext="No worries - plenty of exiciting  events to Explore !"
                     collectionType="My_Tickets"
@@ -42,7 +47,10 @@ const ProfilePage = async ({searchParams}:SearchParamProps) => {
                     urlParamName="orderPage"
                     totalPages={orders?.totalPages}
                 />
+
             </section>
+
+           
 
             {/* Event organized */}
             <section className="bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10">

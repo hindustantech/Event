@@ -7,7 +7,9 @@ import Link from 'next/link';
 import Search from '../../components/Shared/Search';
 import { SearchParamProps } from '@/types';
 import CategoryFilter from '@/components/Shared/CategoryFilter';
+
 export default async function Home({searchParams}:SearchParamProps) {
+  
   const Page=Number(searchParams?.page)||1;
   const searchText=(searchParams?.query as string)||'';
   const category=(searchParams?.category as string)||'';
