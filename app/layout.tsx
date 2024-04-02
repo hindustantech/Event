@@ -11,8 +11,8 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Evently ',
-  description: 'Evently Hendle The Evnte',
+  title: 'DreamCraft',
+  description: 'DreamCraft Hendle The Evnte',
   icons: {
     icon: '/assets/images/logo.svg'
   }

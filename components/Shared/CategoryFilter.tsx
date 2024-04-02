@@ -29,22 +29,22 @@ const CategoryFilter = () => {
   }, [])
 
   const onSelectCategory = (category: string) => {
-      let newUrl = '';
+    let newUrl = '';
 
-      if(category && category !== 'All') {
-        newUrl = formUrlQuery({
-          params: searchParams.toString(),
-          key: 'category',
-          value: category
-        })
-      } else {
-        newUrl = removeKeysFromQuery({
-          params: searchParams.toString(),
-          keysToRemove: ['category']
-        })
-      }
+    if (category && category !== 'All') {
+      newUrl = formUrlQuery({
+        params: searchParams.toString(),
+        key: 'category',
+        value: category
+      })
+    } else {
+      newUrl = removeKeysFromQuery({
+        params: searchParams.toString(),
+        keysToRemove: ['category']
+      })
+    }
 
-      router.push(newUrl, { scroll: false });
+    router.push(newUrl, { scroll: false });
   }
 
   return (
@@ -53,10 +53,10 @@ const CategoryFilter = () => {
         <SelectValue placeholder="Category" />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="All" className="select-item p-regular-14">All</SelectItem>
+        <SelectItem value="All" className="select-item p-regular-16 border-0 bg-gray-300 outline-offset-0 focus:border-0 focus-visible:ring-0 focus-visible:ring-offset-0">All</SelectItem>
 
         {categories.map((category) => (
-          <SelectItem value={category.name} key={category._id} className="select-item p-regular-14">
+          <SelectItem value={category.name} key={category._id} className="select-item ">
             {category.name}
           </SelectItem>
         ))}
