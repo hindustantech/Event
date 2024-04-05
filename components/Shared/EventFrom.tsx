@@ -229,7 +229,7 @@ const EventFrom = ({ userId, type, event, eventId }: EventFromPops) => {
                       height={24}
                       className="filter-gray"
                     />
-                    <p className="ml-3 whitespace-nowrap text-gray-600 "> Start Date: </p>
+                    <p className="ml-3 whitespace-nowrap text-gray-600 "> End Date: </p>
                     <DatePicker
                       selected={field.value}
                       onChange={(date: Date) => field.onChange(date)}
