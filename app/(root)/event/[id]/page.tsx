@@ -21,8 +21,8 @@ const EventDetails = async ({ params: { id }, searchParams }: SearchParamProps) 
         <Image 
           src={event.imageUrl}
           alt="hero image"
-          width={100}
-          height={100}
+          width={1000}
+          height={1000}
           className="h-full min-h-[300px] object-cover object-center"
         />
           <div className="flex w-full flex-col gap-8 p-5 md:p-10">
